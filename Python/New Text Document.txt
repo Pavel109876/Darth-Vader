@@ -1,0 +1,1 @@
+pyinstaller -F -i "D:\Git\Darth-Vader\Python\exe\f1_formula1_icon.ico" -w F1_PG.py
