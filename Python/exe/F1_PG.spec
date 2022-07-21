@@ -41,5 +41,5 @@ exe = EXE(
     target_arch=None,
     codesign_identity=None,
     entitlements_file=None,
-    icon='D:\\Git\\Darth-Vader\\Python\\exe\\f1_formula1_icon.ico',
+    icon='C:\\Git\\Darth-Vader\\Python\\exe\\f1_formula1_icon.ico',
 )

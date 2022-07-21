@@ -13,17 +13,13 @@ import pandas as pd
 
 root = tk.Tk()
 root.title('F1 Database for Postgres')
-root.iconbitmap(os.getcwd() + '\\f1_formula1_6833.ico')
-
-
+root.iconbitmap('C:\\Git\\Darth-Vader\\Python\\exe\\f1_formula1_icon.ico')
 
 host_value = tk.StringVar()
 port_value = tk.StringVar()
 user_value = tk.StringVar()
 password_value = tk.StringVar()
 result_value = tk.StringVar(value='Result: ')
-
-
 
 def run_db(*args):
     try:
@@ -41,14 +37,14 @@ def run_db(*args):
         with zipfile.ZipFile(os.getcwd() + '\\tmp_del\\f1db_csv.zip', 'r') as zip_ref:
             zip_ref.extractall(os.getcwd() + '\\tmp_del')
 
-        with open(os.getcwd() + '\\tmp_del\\drivers.csv', 'r') as file:
+        with open(os.getcwd() + '\\tmp_del\\drivers.csv', 'r', errors='ignore') as file:
             filedata = file.read()
             filedata = filedata.replace('\'', '\'\'')
 
         with open(os.getcwd() + '\\tmp_del\\drivers.csv', 'w') as file:
             file.write(filedata)
 
-        with open(os.getcwd() + '\\tmp_del\\driver_standings.csv', 'r') as file:
+        with open(os.getcwd() + '\\tmp_del\\driver_standings.csv', 'r', errors='ignore') as file:
             filedata = file.read()
             filedata = filedata.replace('D', '0')
 
@@ -62,7 +58,7 @@ def run_db(*args):
         # with open(os.getcwd() + '\\tmp_del\\races.csv', 'w') as file:
         #     file.write(filedata)
 
-        data = pd.read_csv(os.getcwd() + '\\tmp_del\\drivers.csv')
+        data = pd.read_csv(os.getcwd() + '\\tmp_del\\drivers.csv', encoding='latin1')
         df = pd.DataFrame(data)
 
         data1 = pd.read_csv(os.getcwd() + '\\tmp_del\\driver_standings.csv')
@@ -377,7 +373,6 @@ user_label = ttk.Label(main_frame, text='User: ')
 user_entry = ttk.Entry(main_frame, width=10, textvariable=user_value)
 password_label = ttk.Label(main_frame, text='Password: ')
 password_entry = ttk.Entry(main_frame, width=10, textvariable=password_value)
-
 
 
 f_display_result = ttk.Label(main_frame, textvariable=result_value)
