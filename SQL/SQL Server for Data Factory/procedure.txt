@@ -1,0 +1,25 @@
+DROP PROCEDURE proc_merge_for_driver_table
+
+CREATE TYPE drivers_type AS TABLE   
+    (driverid int NOT NULL,
+	driverref varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+	[number] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+	code varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+	forename varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+	surname varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+	dob date NULL,
+	nationality varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+	url varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL);  
+
+CREATE PROCEDURE proc_merge_for_driver_table (@source drivers_type READONLY)
+AS  
+MERGE INTO drivers AS tgt
+USING (SELECT d1.driverid, d1.driverref, d1.[number], d1.code, d1.forename, d1.surname, d1.dob, d1.nationality, d1.url FROM @source AS d1  
+    LEFT JOIN drivers AS d2  
+    ON d1.driverid = d2.driverid) as src 
+ON (tgt.forename = src.forename) AND (tgt.surname = src.surname)
+WHEN NOT MATCHED  
+    THEN INSERT (driverid, driverref, [number], code, forename, surname, dob, nationality, url)  
+        VALUES (driverid, src.driverref, [number], code, forename, surname, dob, nationality, url);
+       
+EXECUTE [dbo].[proc_merge_for_driver_table] 

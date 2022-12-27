@@ -165,7 +165,7 @@ def run_db(*args):
         for row in df11.itertuples():
             cur.execute(
                 f'INSERT INTO f1.circuits VALUES ({row.circuitId},\'{row.circuitRef}\',\'{row.name}\',\'{row.location}\',\'{row.country}\',\'{row.lat}\',\'{row.lng}\',\'{row.alt}\', \'{row.url}\');')
-            conn.commit()
+        conn.commit()
 
         for row in df2.itertuples():
             cur.execute(
@@ -182,25 +182,25 @@ def run_db(*args):
         for row in df3.itertuples():
             cur.execute(
                 f'INSERT INTO f1.lap_times VALUES ({row.raceId}, {row.driverId}, {row.lap}, {row.position}, \'{row.time}\', {row.milliseconds});')
-            conn.commit()
+        conn.commit()
 
         for row in df4.itertuples():
             cur.execute(
                 f'INSERT INTO f1.constructors VALUES ({row.constructorId}, \'{row.constructorRef}\', \'{row.name}\', \'{row.nationality}\', \'{row.url}\');')
-            conn.commit()
+        conn.commit()
 
         for row in df5.itertuples():
             cur.execute(f'INSERT INTO f1.seasons VALUES ({row.year}, \'{row.url}\');')
-            conn.commit()
+        conn.commit()
 
         for row in df6.itertuples():
             cur.execute(f'INSERT INTO f1.status VALUES ({row.statusId}, \'{row.status}\');')
-            conn.commit()
+        conn.commit()
 
         for row in df7.itertuples():
             cur.execute(
                 f'INSERT INTO f1.constructor_results VALUES ({row.constructorResultsId}, {row.raceId}, {row.constructorId}, {row.points}, \'{row.status}\');')
-            conn.commit()
+        conn.commit()
 
         for row in df8.itertuples():
             cur.execute(
@@ -211,7 +211,7 @@ def run_db(*args):
             cur.execute(
                 f'INSERT INTO f1.results VALUES ({row.resultId}, {row.raceId}, {row.driverId}, {row.constructorId}, \'{row.number}\', {row.grid}, \'{row.position}\', \'{row.positionText}\', {row.positionOrder}, {row.points}, {row.laps},'
                 f'\'{row.time}\', \'{row.milliseconds}\', \'{row.fastestLap}\', \'{row.rank}\', \'{row.fastestLapTime}\', \'{row.fastestLapSpeed}\', {row.statusId});')
-            conn.commit()
+        conn.commit()
 
         for row in df10.itertuples():
             cur.execute(
