@@ -20,3 +20,5 @@ END;
 $$;
 
 CALL insert_data();
+
+--test completed2
