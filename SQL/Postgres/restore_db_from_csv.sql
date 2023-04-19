@@ -11,3 +11,5 @@ UPDATE public.drivers SET code = NULL WHERE code = '\N';
 ALTER TABLE public.drivers
 ALTER COLUMN number TYPE INT 
 USING number::integer;
+
+--test2222
